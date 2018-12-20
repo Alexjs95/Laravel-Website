@@ -1,14 +1,7 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.forum')
 
-        <title>{{config('app.name', 'Games Forum')}}</title>
-    </head>
-    <body>
+@section('content')
         <h1>About</h1>
         <p>This website was created for an assignement using Laravel</p>
+@endsection
 
-    </body>
-</html>
