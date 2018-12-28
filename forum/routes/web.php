@@ -17,5 +17,6 @@ Route::get('/about', 'PagesController@aboutPage');
 
 Route::get('/services', 'PagesController@servicesPage');
 
+Route::resource('topics', 'TopicController'); // Routes to all functions available in the topic controller
 
 
