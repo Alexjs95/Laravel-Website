@@ -15,10 +15,11 @@ class CreateTopicPostsTable extends Migration
     {
         Schema::create('topic_posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('topicID');
+            $table->foreign('topicID');
             $table->mediumText('body');
             // add user id later
             $table->timestamps();
+
         });
     }
 

@@ -8,6 +8,21 @@
     <div>
         {{$topic->body}}
     </div>
-    <hr><small>Created on {{$topic->created_at}}</small>
+
+
+    @if (count($posts) >= 1) 
+        @foreach ($posts as $post)
+            <div class="card card-body bg-light">
+                <h4>{{$post->body}}</h4>
+                <small>added on {{$post->created_at}}</small>
+            </div>
+            <br>
+        @endforeach
+    @else
+        <p>No posts found<p>
+    @endif
+
+
+    <hr><small>Topic created on {{$topic->created_at}}</small>
 
 @endSection
