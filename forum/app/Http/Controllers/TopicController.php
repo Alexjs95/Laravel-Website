@@ -47,7 +47,7 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        //
+        return Topic::find($id);
     }
 
     /**
