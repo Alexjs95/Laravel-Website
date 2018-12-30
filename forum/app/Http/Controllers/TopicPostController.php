@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Topic;
 
-class TopicController extends Controller
+class TopicPostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::orderBy('created_at', 'asc')->get();
-        return view('topics.index')->with('topics', $topics);
+        //
     }
 
     /**
@@ -47,9 +45,7 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        $topic = Topic::find($id);
-        //$topicPosts = TopicPosts::where('id', $id)->get();
-        return view('topics.show')->with('topic', $topic) ;
+        //
     }
 
     /**

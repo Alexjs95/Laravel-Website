@@ -1,6 +1,7 @@
 @extends('layouts.forum')
 
 @section('content')
+    <br>
     <h1>Topics</h1>
     @if (count($topics) > 1) 
         @foreach ($topics as $topic)
