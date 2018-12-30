@@ -15,7 +15,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::orderBy('created_at', 'asc')->get();
+        $topics = Topic::orderBy('created_at', 'asc')->paginate(10);;
         return view('topics.index')->with('topics', $topics);
     }
 
@@ -49,15 +49,10 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = Topic::find($id);
+        $posts = TopicPost::where('topic_id', '=', $id)->paginate(10);
 
-        //return $posts = Topic::find($id)->posts;
-
-        $posts = TopicPost::where('topic_id', '=', $id)->get();
-
-
-        //return view('topics.show')->with('posts', $posts);
-        return view('topics.show')->with('topic', $topic)->with('posts', $posts);
-        //return view('topics.show')->with(compact('topic', 'posts'));
+        //return view('topics.show')->with('topic', $topic)->with('posts', $posts);
+        return view('topics.show')->with(compact('topic', 'posts'));
     }
 
 
