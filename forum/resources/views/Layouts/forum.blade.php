@@ -12,6 +12,9 @@
             @include('include.messages')
             @yield('content')           <!--laravel blade snippets exention -->
         </div>
-
+        <script src="{{ URL::asset('../vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>﻿
     </body>
 </html>
