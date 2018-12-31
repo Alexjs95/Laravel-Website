@@ -15,7 +15,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::orderBy('created_at', 'asc')->paginate(10);;
+        $topics = Topic::orderBy('created_at', 'asc')->paginate(10);
         return view('topics.index')->with('topics', $topics);
     }
 
@@ -26,7 +26,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //
+        return view('topics.create');
     }
 
     /**
