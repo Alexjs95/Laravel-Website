@@ -15,7 +15,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::orderBy('created_at', 'asc')->paginate(10);
+        $topics = Topic::orderBy('created_at', 'desc')->paginate(10);
         return view('topics.index')->with('topics', $topics);
     }
 
@@ -37,7 +37,15 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this -> validate($request, ['title' => 'required', 'body' => 'required']);
+
+        // creatr a new topic
+        $topic = new Topic;
+        $topic->title = $request->input('title');
+        $topic->body = $request->input('body');
+        $topic->save();
+
+        return redirect('/topics')->with('success', 'Topic created');
     }
 
     /**

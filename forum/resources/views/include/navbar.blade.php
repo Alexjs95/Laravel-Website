@@ -10,12 +10,14 @@
                 <a class="nav-link" href="/assignment-1-laravel-Alexjs95/forum/public">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/assignment-1-laravel-Alexjs95/forum/public/about">About</a>
+            </li>
+            <li class="nav-item">
                     <a class="nav-link" href="/assignment-1-laravel-Alexjs95/forum/public/topics">View Topics</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/assignment-1-laravel-Alexjs95/forum/public/about">About</a>
+                    <a class="nav-link" href="/assignment-1-laravel-Alexjs95/forum/public/topics/create">Create Topic</a>
             </li>
-            
         </ul>  
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

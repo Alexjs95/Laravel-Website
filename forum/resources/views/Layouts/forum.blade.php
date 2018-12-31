@@ -9,7 +9,7 @@
     <body>
         @include('include.navbar')
         <div class="container">
-            
+            @include('include.messages')
             @yield('content')           <!--laravel blade snippets exention -->
         </div>
 
