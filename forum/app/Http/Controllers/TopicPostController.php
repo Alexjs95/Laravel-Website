@@ -35,6 +35,7 @@ class TopicPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $this -> validate($request, ['body' => 'required']);
@@ -45,7 +46,6 @@ class TopicPostController extends Controller
         $topicPost->user_id = auth()->user()->id;
         $topicPost->topic_id = $request->id;
         //$topicPost->Topic()->associate($topic);
-
 
         $topicPost->save();
         return redirect('/topics')->with('success', 'Post added to topic');

@@ -13,13 +13,5 @@ class PagesController extends Controller
     public function aboutPage() {
         return view('pages.about');
     }
-
-    public function servicesPage() {
-        $data = array(
-            'title' => 'Services'
-
-        );
-        return view('pages.services')->with ($data);
-    }
 }
 

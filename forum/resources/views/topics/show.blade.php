@@ -11,19 +11,19 @@
     {!!Form::close()!!}
     <br><br>
     <h1>{{$topic->title}}</h1>
-    <div>
-        {!!$topic->body!!}      <!-- double !! to parse html --> 
-    </div>
+    
+        <h4>{!!$topic->body!!}</h4>      <!-- double !! to parse html --> 
+  
     <br><br>
-    <a href="/assignment-1-laravel-Alexjs95/forum/public/topicposts/create/{{$topic->id}}" class="btn btn-secondary">add new message</a>
-
+    <a href="/assignment-1-laravel-Alexjs95/forum/public/topicposts/create/{{$topic->id}}" class="btn btn-secondary">Add new post to topic</a>
+    <br><br>
 
 
     @if (count($posts) > 0) 
         @foreach ($posts as $post)
             <div class="card card-body bg-light">
                 <h4>{!!$post->body!!}</h4>
-                <small>added on {{$post->created_at}}</small>
+                <small>added on {{$post->created_at}} by {{$post->user->name}}</small>
             </div>
             <br>
         @endforeach
