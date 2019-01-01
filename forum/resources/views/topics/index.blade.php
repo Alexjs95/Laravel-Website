@@ -7,7 +7,7 @@
         @foreach ($topics as $topic)
             <div class="card card-body bg-light">
                 <h4><a href="/assignment-1-laravel-Alexjs95/forum/public/topics/{{$topic->id}}">{{$topic->title}}</a></h4>
-                <small>created on {{$topic->created_at}}</small>
+                <small>created on {{$topic->created_at}} by {{$topic->user->name}}</small>
             </div>
             <br>
         @endforeach

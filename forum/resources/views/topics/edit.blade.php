@@ -3,6 +3,7 @@
 @section('content')
     <br>
     <h1>Edit topic</h1>
+    <h1> {{$topic->id}} </h1>
     {!! Form::open(['action' => ['TopicController@update', $topic->id], 'method' => 'POST']) !!}
         <div class='form-group'>
             {{Form::label('title', 'Topic Title: ')}}

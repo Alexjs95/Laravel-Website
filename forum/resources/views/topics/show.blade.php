@@ -33,6 +33,6 @@
     @endif
 
 
-    <hr><small>Topic created on {{$topic->created_at}}</small>
+    <hr><small>Topic created on {{$topic->created_at}} by {{$topic->user->name}}</small>
 
 @endSection

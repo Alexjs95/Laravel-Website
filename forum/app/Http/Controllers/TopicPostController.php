@@ -20,12 +20,13 @@ class TopicPostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * * @param  int  $topic_id
+     * * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function create($topic_id)
+    public function create($id)
     {
-        return view('topicposts.create')->with('topic_id', $topic_id);
+        $topic = Topic::find($id);
+        return view('topicposts.create')->with('topic', $topic);
     }
 
     /**
@@ -41,14 +42,13 @@ class TopicPostController extends Controller
         // create a new topic
         $topicPost = new TopicPost;
         $topicPost->body = $request->input('body');
+        $topicPost->user_id = auth()->user()->id;
+        $topicPost->topic_id = $request->id;
+        //$topicPost->Topic()->associate($topic);
 
-        return $request->input('topic_id');
 
-        $topicPost->Topic()->associate($topic);
-
-
-        // $topicPost->save();
-        // return redirect('/topics')->with('success', 'Topic created');
+        $topicPost->save();
+        return redirect('/topics')->with('success', 'Post added to topic');
     }
 
     /**
