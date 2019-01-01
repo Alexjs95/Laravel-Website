@@ -7,10 +7,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ URL::asset('../vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
-        <script> CKEDITOR.replace('article-ckeditor'); </script>
+        
         <link rel="stylesheet" href="{{asset('css/app.css')}}"> <!-- uses existing css file containing bootstap-->
         <title>{{config('app.name', 'ASForum')}}</title>
     </head>
@@ -20,6 +17,12 @@
             @include('include.messages')
             @yield('content')           <!--laravel blade snippets exention -->
         </div>
-        
+
+        <!-- Scripts -->
+        <script src="{{ URL::asset('../vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+        <script>
+            CKEDITOR.replace( 'article-ckeditor' );
+        </script>
+
     </body>
 </html>

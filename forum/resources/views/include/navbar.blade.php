@@ -21,8 +21,9 @@
                                     <a class="nav-link" href="/assignment-1-laravel-Alexjs95/forum/public/topics">View Topics</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="/assignment-1-laravel-Alexjs95/forum/public/topics/create">Create Topic</a>
+                                <a class="nav-link" href="/assignment-1-laravel-Alexjs95/forum/public/topics/create">Create Topic</a>
                             </li>
+                            
                     </ul>  
 
                     <!-- Right Side Of Navbar -->
@@ -44,6 +45,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class ="dropdown-item" href="/assignment-1-laravel-Alexjs95/forum/public/home"> Dashboard</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -55,6 +57,7 @@
                                     </form>
                                 </div>
                             </li>
+                            <li> </li>
                         @endguest
                     </ul>
                 </div>

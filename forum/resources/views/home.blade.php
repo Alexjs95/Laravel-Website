@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <a href="/assignment-1-laravel-Alexjs95/forum/public/topics/create" class="btn btn-primary"> Create topic</a>
-                    <h3> Owned topics </h3>
+                    <br><br><h3> Owned topics </h3>
                     
                 </div>
             </div>

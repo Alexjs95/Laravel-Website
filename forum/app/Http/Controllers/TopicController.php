@@ -43,6 +43,7 @@ class TopicController extends Controller
         $topic = new Topic;
         $topic->title = $request->input('title');
         $topic->body = $request->input('body');
+        $topic->user_id = auth()->user()->id;
         $topic->save();
         return redirect('/topics')->with('success', 'Topic created');
     }
