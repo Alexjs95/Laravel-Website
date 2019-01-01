@@ -22,3 +22,7 @@ Route::resource('topics', 'TopicController'); // Routes to all functions availab
 Route::get('topicposts/create/{topic_id}', 'TopicPostController@create');
 Route::resource('topicpost', 'TopicPostController', ['except' => ['create']]);
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
