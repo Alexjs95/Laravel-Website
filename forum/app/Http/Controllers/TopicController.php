@@ -39,12 +39,11 @@ class TopicController extends Controller
     {
         $this -> validate($request, ['title' => 'required', 'body' => 'required']);
 
-        // creatr a new topic
+        // create a new topic
         $topic = new Topic;
         $topic->title = $request->input('title');
         $topic->body = $request->input('body');
         $topic->save();
-
         return redirect('/topics')->with('success', 'Topic created');
     }
 
@@ -72,7 +71,8 @@ class TopicController extends Controller
      */
     public function edit($id)
     {
-        //
+        $topic = Topic::find($id);
+        return view('topics.edit')->with('topic', $topic);
     }
 
     /**
@@ -84,7 +84,14 @@ class TopicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this -> validate($request, ['title' => 'required', 'body' => 'required']);
+
+        // update an existing topic
+        $topic = Topic::find($id);
+        $topic->title = $request->input('title');
+        $topic->body = $request->input('body');
+        $topic->save();
+        return redirect('/topics')->with('success', 'Topic updated');
     }
 
     /**

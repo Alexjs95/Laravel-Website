@@ -12,6 +12,6 @@
             {{Form::label('body', 'Text for topic: ')}}
             {{Form::textarea('body', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Enter some text...'])}}
         </div> 
-        {{Form::submit('Save post', ['class' => 'btn btn-primary'])}}
+        {{Form::submit('Save topic', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}   
 @endSection

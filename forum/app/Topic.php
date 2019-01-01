@@ -13,4 +13,6 @@ class Topic extends Model
     {
         return $this->hasMany('App\TopicPost');
     }
+
+    
 }

@@ -19,6 +19,6 @@ Route::get('/services', 'PagesController@servicesPage');
 
 Route::resource('topics', 'TopicController'); // Routes to all functions available in the topic controller
 
-//Route::resource('topicPosts', 'TopicPostController');
-
+Route::get('topicposts/create/{topic_id}', 'TopicPostController@create');
+Route::resource('topicpost', 'TopicPostController', ['except' => ['create']]);
 
