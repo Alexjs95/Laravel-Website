@@ -102,6 +102,8 @@ class TopicController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $topic = Topic::find($id);
+        $topic->delete();
+        return redirect('/topics')->with('success', 'Topic deleted');
     }
 }
