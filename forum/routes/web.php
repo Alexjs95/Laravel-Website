@@ -26,3 +26,7 @@ Route::resource('topicpost', 'TopicPostController', ['except' => ['create']]);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

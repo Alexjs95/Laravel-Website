@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.forum')
 
 @section('content')
 <div class="container">
@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <a href="/assignment-1-laravel-Alexjs95/forum/public/topics/create" class="btn btn-primary"> Create topic</a>
+                    <h3> Owned topics </h3>
+                    
                 </div>
             </div>
         </div>
