@@ -1,3 +1,5 @@
+<script src="{{ asset('js/app.js') }}" ></script>
+
 <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">

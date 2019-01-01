@@ -13,4 +13,9 @@ class TopicPost extends Model
     {
         return $this->belongsTo('App\Topic');
     }
+
+    public function user() 
+    {
+        return $this->belongsTo('App\User');
+    }
 }
