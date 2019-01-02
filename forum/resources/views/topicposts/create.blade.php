@@ -3,8 +3,6 @@
 @section('content')
     <br>
     <h1>Adding new post</h1>
-    <h1> {{$topic->id}} </h1>
-
     {!! Form::open(['action' => ['TopicPostController@store', $topic->id], 'method' => 'POST']) !!}
         <div class='form-group'>
             {{Form::label('body', 'Text for topic: ')}}

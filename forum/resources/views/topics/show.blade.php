@@ -3,21 +3,25 @@
 @section('content')
     <br>
     <a href="/assignment-1-laravel-Alexjs95/forum/public/topics" class="btn btn-secondary">Back to topics</a>
-    
-    <a href="/assignment-1-laravel-Alexjs95/forum/public/topics/{{$topic->id}}/edit" class="btn btn-secondary"> Edit topic</a>
-    {!!Form::open(['action' => ['TopicController@destroy', $topic->id], 'method' => 'POST'])!!}
-        {{Form::hidden('_method', 'DELETE')}}
-        {{Form::submit('Delete topic', ['class' => 'btn btn-danger'])}}
-    {!!Form::close()!!}
+
+    @if(!Auth::guest())        <!-- if the user is not a guest then show edit/delete buttons -->
+        <a href="/assignment-1-laravel-Alexjs95/forum/public/topics/{{$topic->id}}/edit" class="btn btn-secondary"> Edit topic</a>
+        <br><br>
+        {!!Form::open(['action' => ['TopicController@destroy', $topic->id], 'method' => 'POST'])!!}
+            {{Form::hidden('_method', 'DELETE')}}
+            {{Form::submit('Delete topic', ['class' => 'btn btn-danger'])}}
+        {!!Form::close()!!}
+    @endif
     <br><br>
     <h1>{{$topic->title}}</h1>
     
         <h4>{!!$topic->body!!}</h4>      <!-- double !! to parse html --> 
   
-    <br><br>
-    <a href="/assignment-1-laravel-Alexjs95/forum/public/topicposts/create/{{$topic->id}}" class="btn btn-secondary">Add new post to topic</a>
-    <br><br>
-
+    <br>
+    @if(!Auth::guest())        <!-- if the user is not a guest then show add new message button -->
+        <a href="/assignment-1-laravel-Alexjs95/forum/public/topicposts/create/{{$topic->id}}" class="btn btn-secondary">Add new post to topic</a>
+        <br><br>
+    @endif
 
     @if (count($posts) > 0) 
         @foreach ($posts as $post)
