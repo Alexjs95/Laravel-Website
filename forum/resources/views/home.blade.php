@@ -15,7 +15,7 @@
                     @endif
                     <a href="/assignment-1-laravel-Alexjs95/forum/public/topics/create" class="btn btn-primary"> Create topic</a>
                     <br><br><h3> Owned topics </h3>
-                    @if (count($topics) > 0) 
+                    @if(count($topics) > 0)
                         <table class="table table-striped">
                             <tr>
                                 <th> Title </th>
