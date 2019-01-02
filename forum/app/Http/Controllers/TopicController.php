@@ -85,6 +85,11 @@ class TopicController extends Controller
     public function edit($id)
     {
         $topic = Topic::find($id);
+        // Ensure correct user is editing
+        if(auth()->user()->id != $topic->user_id)
+        {
+            return redirect('topics')->with('error', 'Not authorised to edit topic.');
+        }
         return view('topics.edit')->with('topic', $topic);
     }
 
@@ -116,6 +121,11 @@ class TopicController extends Controller
     public function destroy($id)
     {
         $topic = Topic::find($id);
+        // Ensure correct user is deleting a topic
+        if(auth()->user()->id != $topic->user_id)
+        {
+            return redirect('topics')->with('error', 'Not authorised to edit topic.');
+        }
         $topic->delete();
         return redirect('/topics')->with('success', 'Topic deleted');
     }
