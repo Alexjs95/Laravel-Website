@@ -27,6 +27,7 @@ class TopicController extends Controller
      */
     public function index()
     {
+        
         $topics = Topic::orderBy('created_at', 'desc')->paginate(10);
         return view('topics.index')->with('topics', $topics);
     }
@@ -128,5 +129,22 @@ class TopicController extends Controller
         }
         $topic->delete();
         return redirect('/topics')->with('success', 'Topic deleted');
+    }
+
+    /**
+     * filter to find topics between certain dates.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Request $request)
+    {
+        $this -> validate($request, ['start' => 'required', 'end' => 'required']);
+        $date1 = $request->input('start');
+        $date2 = $request->input('end');
+        $topics = Topic::where('updated_at', '>', $date1)->where('updated_at', '<', $date2)->paginate(10);
+
+        return view('topics.index')->with('topics', $topics);
+    
     }
 }
