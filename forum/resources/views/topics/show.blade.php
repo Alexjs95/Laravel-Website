@@ -5,14 +5,12 @@
     <a href="/assignment-1-laravel-Alexjs95/forum/public/topics" class="btn btn-secondary">Back to topics</a>
 
     @if(!Auth::guest())        <!-- if the user is not a guest then show edit/delete buttons -->
-        @if(Auth::user()->id == $topic->user_id)    <!-- only enable the edit/delete buttons if the current user is the topic owner -->
-            <a href="/assignment-1-laravel-Alexjs95/forum/public/topics/{{$topic->id}}/edit" class="btn btn-secondary"> Edit topic</a>
-            <br><br>
-            {!!Form::open(['action' => ['TopicController@destroy', $topic->id], 'method' => 'POST'])!!}
-                {{Form::hidden('_method', 'DELETE')}}
-                {{Form::submit('Delete topic', ['class' => 'btn btn-danger'])}}
-            {!!Form::close()!!}
-        @endif
+        <a href="/assignment-1-laravel-Alexjs95/forum/public/topics/{{$topic->id}}/edit" class="btn btn-secondary"> Edit topic</a>
+        <br><br>
+        {!!Form::open(['action' => ['TopicController@destroy', $topic->id], 'method' => 'POST'])!!}
+            {{Form::hidden('_method', 'DELETE')}}
+            {{Form::submit('Delete topic', ['class' => 'btn btn-danger'])}}
+        {!!Form::close()!!}
     @endif
     <br><br>
     <h1>{{$topic->title}}</h1>
