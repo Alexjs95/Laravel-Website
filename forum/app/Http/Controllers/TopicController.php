@@ -145,5 +145,4 @@ class TopicController extends Controller
 
         return view('topics.index')->with('topics', $topics);
     }
-
 }
