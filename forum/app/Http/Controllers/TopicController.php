@@ -84,6 +84,8 @@ class TopicController extends Controller
      */
     public function edit($id)
     {
+        $topic = Topic::find($id);
+
         // Ensure correct user is editing
         if(auth()->user()->id != $topic->user_id)
         {

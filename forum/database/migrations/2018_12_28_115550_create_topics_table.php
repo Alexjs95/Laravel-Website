@@ -17,7 +17,7 @@ class CreateTopicsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->mediumText('body');
-            // add user id later
+
             $table->timestamps();
         });
     }
