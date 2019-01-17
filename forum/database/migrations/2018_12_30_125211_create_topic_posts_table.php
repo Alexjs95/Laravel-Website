@@ -14,10 +14,21 @@ class CreateTopicPostsTable extends Migration
     public function up()
     {
         Schema::create('topic_posts', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->mediumText('body');
+            $table->integer('user_id')->unsigned();
+            $table->integer('topic_id')->unsigned();
             $table->timestamps();
 
+
+
+        });
+
+        Schema::table('topic_posts', function ($table) {
+            $table->foreign('topic_id')
+                ->references('id')->on('topics')
+                ->onDelete('cascade');
         });
     }
 

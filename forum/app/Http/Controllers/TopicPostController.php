@@ -103,6 +103,7 @@ class TopicPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+       //
     }
 }
