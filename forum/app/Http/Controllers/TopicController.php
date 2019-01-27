@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Topic;
 use App\TopicPost;
 
@@ -26,7 +27,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::orderBy('created_at', 'desc')->paginate(10);
+        $topics = Topic::orderBy('created_at', 'desc')->paginate(10);       // limits number of topics per page to 10
         return view('topics.index')->with('topics', $topics);
     }
 
@@ -134,18 +135,24 @@ class TopicController extends Controller
     }
 
     /**
-     * filter to find topics between certain dates.
+     * Search to find topics based on the authorr.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function filter(Request $request)
+    public function search(Request $request)
     {
-        $this -> validate($request, ['start' => 'required', 'end' => 'required']);
-        $date1 = $request->input('start');
-        $date2 = $request->input('end');
-        $topics = Topic::where('updated_at', '>', $date1)->where('updated_at', '<', $date2)->paginate(10);
+        $this -> validate($request, ['search']);
+        $search = $request->input('search');
+        $id = User::where('name', $search)->first();
+        if ($id != null) {
+            $id = User::where('name', $search)->first()->id;
+            $topics = Topic::where('user_id', '=', $id)->paginate(10);
+        } else {
+            return view('topics/index')->withErrors('No search results', 'fail')->with('topics', null);
+        }
 
         return view('topics.index')->with('topics', $topics);
     }
+
 }

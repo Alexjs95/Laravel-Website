@@ -3,15 +3,15 @@
 @section('content')
     <br>
     <h1>Topics</h1>
-    {!! Form::open(['action' => 'TopicController@filter', 'method' => 'GET']) !!}
-        <div class="form-group">
-            {{ Form::label('date', 'Filter between two dates:')}}
-            {{ Form::text('start', '', array('id' => 'datepicker1')) }}
-            {{ Form::text('end', '', array('id' => 'datepicker2')) }}
-            {{ Form::submit('filter topics', ['class' => 'btn btn-primary'])}}
-        </div>
-    {!! Form::close() !!}   
 
+    {!! Form::open(['action' => 'TopicController@search', 'method' => 'GET']) !!}
+        <div class="form-group">
+            {{ Form::label('search', 'Search by Author:')}}
+            {{ Form::text('search', '') }}
+            {{ Form::submit('Search', ['class' => 'btn btn-primary']) }}
+            <a href="/assignment-1-laravel-Alexjs95/forum/public/topics">Reset Search</a>
+        </div>
+    {!! Form::close() !!}
 
     @if (count($topics) > 0) 
         @foreach ($topics as $topic)
