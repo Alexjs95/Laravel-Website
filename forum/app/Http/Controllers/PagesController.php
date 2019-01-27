@@ -8,14 +8,11 @@ use Auth;
 class PagesController extends Controller
 {
     public function indexPage() {
-        if (Auth::Check()) {
-        //    return view('home');
-        }
-        return view('pages.index');
+        return view('pages.index');     // return index page
     }
 
     public function aboutPage() {
-        return view('pages.about');
+        return view('pages.about');     // return about page
     }
 }
 

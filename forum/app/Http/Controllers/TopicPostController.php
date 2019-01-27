@@ -14,18 +14,10 @@ class TopicPostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' =>['index', 'show']]);
+        // authentication is required on all methods
+        $this->middleware('auth');
     }
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -50,60 +42,13 @@ class TopicPostController extends Controller
     {
         $this -> validate($request, ['body' => 'required']);
 
-        // create a new topic
+        // create a new topic post
         $topicPost = new TopicPost;
         $topicPost->body = $request->input('body');
         $topicPost->user_id = auth()->user()->id;
         $topicPost->topic_id = $request->id;
-        //$topicPost->Topic()->associate($topic);
 
-        $topicPost->save();
+        $topicPost->save();         // save the topic post.
         return redirect('/topics')->with('success', 'Post added to topic');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-
-       //
     }
 }

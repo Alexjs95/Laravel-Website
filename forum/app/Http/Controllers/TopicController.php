@@ -16,6 +16,7 @@ class TopicController extends Controller
      */
     public function __construct()
     {
+        // authentication is required on all methods except for index, showing a topic and search.
         $this->middleware('auth', ['except' =>['index', 'show', 'search']]);
     }
 
@@ -27,8 +28,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::orderBy('created_at', 'desc')->paginate(10);       // limits number of topics per page to 10
-        return view('topics.index')->with('topics', $topics);
+        $topics = Topic::orderBy('created_at', 'desc')->paginate(10);       // paginate limits number of topics per page to 10.
+        return view('topics.index')->with('topics', $topics);   // return view with the topics.
     }
 
     /**
@@ -38,7 +39,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('topics.create');
+        return view('topics.create');       // return view.
     }
 
     /**
@@ -53,10 +54,10 @@ class TopicController extends Controller
 
         // create a new topic
         $topic = new Topic;
-        $topic->title = $request->input('title');
-        $topic->body = $request->input('body');
-        $topic->user_id = auth()->user()->id;
-        $topic->save();
+        $topic->title = $request->input('title');   // sets the title of the topic
+        $topic->body = $request->input('body');     // sets the body of the topic.
+        $topic->user_id = auth()->user()->id;       // sets the user as the currently logged in user.
+        $topic->save();     // store the topic.
         return redirect('/topics')->with('success', 'Topic created');
     }
 
@@ -68,10 +69,8 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        $topic = Topic::find($id);
-        $posts = TopicPost::where('topic_id', '=', $id)->paginate(10);
-
-        //return view('topics.show')->with('topic', $topic)->with('posts', $posts);
+        $topic = Topic::find($id);      // find topic by idea.
+        $posts = TopicPost::where('topic_id', '=', $id)->paginate(10);      // find posts that relate to the view topic.
         return view('topics.show')->with(compact('topic', 'posts'));
     }
 
@@ -84,14 +83,13 @@ class TopicController extends Controller
      */
     public function edit($id)
     {
-        $topic = Topic::find($id);
+        $topic = Topic::find($id);      // find topic by id
 
         // Ensure correct user is editing
         if(auth()->user()->id != $topic->user_id)
         {
             return redirect('topics')->with('error', 'Not authorised to edit topic.');
         }
-        $topic = Topic::find($id);
         return view('topics.edit')->with('topic', $topic);
     }
 
@@ -106,11 +104,11 @@ class TopicController extends Controller
     {
         $this -> validate($request, ['title' => 'required', 'body' => 'required']);
 
-        // update an existing topic
+        // Update an existing topic
         $topic = Topic::find($id);
         $topic->title = $request->input('title');
         $topic->body = $request->input('body');
-        $topic->save();
+        $topic->save();         // save updates.
         return redirect('/topics')->with('success', 'Topic updated');
     }
 
@@ -127,11 +125,11 @@ class TopicController extends Controller
         // Ensure correct user is deleting a topic
         if(auth()->user()->id != $topic->user_id)
         {
-            return redirect('topics')->with('error', 'Not authorised to edit topic.');
+            return redirect('topics')->with('error', 'Not authorised to edit topic.'); // return error message
         }
-        $topic->delete();
+        $topic->delete();       // delete topic.
 
-        return redirect('/topics')->with('success', 'Topic deleted');
+        return redirect('/topics')->with('success', 'Topic deleted');   // return success message
     }
 
     /**
@@ -142,17 +140,16 @@ class TopicController extends Controller
      */
     public function search(Request $request)
     {
-        $this -> validate($request, ['search']);
+        $this -> validate($request, ['search']);        // get search value from blade template
         $search = $request->input('search');
-        $id = User::where('name', $search)->first();
-        if ($id != null) {
-            $id = User::where('name', $search)->first()->id;
-            $topics = Topic::where('user_id', '=', $id)->paginate(10);
+        $user = User::where('name', $search)->first();        // find the user by name.
+        if ($user != null) {
+            $id = User::where('name', $search)->first()->id;        // if user isnt null then get ID.
+            $topics = Topic::where('user_id', '=', $id)->paginate(10);      // search for topics by that user ID.
         } else {
             return view('topics/index')->withErrors('No search results', 'fail')->with('topics', null);
         }
 
         return view('topics.index')->with('topics', $topics);
     }
-
 }
